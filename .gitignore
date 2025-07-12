@@ -16,3 +16,16 @@ Thumbs.db
 
 # Python specific
 .env
+
+# Bytecode do Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Banco de dados SQLite
+*.sqlite3
+*.db
+
+# Arquivos de cache do Flask
+instance/
+*.log
