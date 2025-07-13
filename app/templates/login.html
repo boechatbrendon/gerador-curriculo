@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for field, errors in form.errors.items() %}
+      {% for error in errors %}
+        <p class="text-red-600">{{ field }} - {{ error }}</p>
+      {% endfor %}
+    {% endfor %}    
+    <h2>Login</h2>
+    <form action="" method="post">
+        {{ form.csrf_token }}
+        {{ form.email.label }}
+        {{ form.email }}
+        {{ form.senha.label }}
+        {{ form.senha }}
+        {{ form.btn_login }}
+    </form>
+    
+</body>
+</html>

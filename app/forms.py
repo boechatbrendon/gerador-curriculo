@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DateField, SelectField, TextAreaField, SubmitField, TelField, FieldList, FormField
+from wtforms import StringField, DateField, SelectField, TextAreaField, SubmitField, TelField, FieldList, FormField, PasswordField
 
 from wtforms.validators import DataRequired, Email
 
@@ -95,3 +95,9 @@ class FormDado(FlaskForm):
 
     # Botao
     btn_GerarCurriculo = SubmitField('Gerar Currículo')
+
+
+class FormLogin(FlaskForm):
+    email = StringField('E-mail', validators=[DataRequired(), Email()])
+    senha = PasswordField('Senha', validators=[DataRequired()])
+    btn_login = SubmitField('Logar')
