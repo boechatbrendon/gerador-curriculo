@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth bg-gray-50 dark:bg-gray-900">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Currículo - {{ usuario.nome }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body class="text-gray-800 dark:text-gray-200 font-sans">
+  <main class="max-w-3xl mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg mt-10 mb-10">
+    <!-- Cabeçalho -->
+    <header class="flex items-center space-x-4 mb-6">
+      <div
+        class="w-24 h-24 rounded-full bg-blue-600 flex items-center justify-center text-white text-3xl font-bold"
+      >
+        BB
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold">{{ usuario.nome }}</h1>
+        <p class="text-blue-600 dark:text-blue-400 font-semibold">
+          {{usuario.cargo}} | Python, PHP, JavaScript
+        </p>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+          Osasco, São Paulo - Brasil
+        </p>
+      </div>
+    </header>
+
+    <!-- Dados Pessoais -->
+    <section class="mb-8">
+      <h2
+        class="inline-block bg-blue-600 dark:bg-blue-400 text-white dark:text-gray-900 px-4 py-1 rounded-md mb-4 text-xl font-semibold"
+      >
+        Dados Pessoais
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 text-gray-700 dark:text-gray-300">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-user text-blue-600 dark:text-blue-400 w-5"></i>
+          <span><strong>Nome completo:</strong> {{usuario.nome}}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-heart text-red-500 dark:text-red-400 w-5"></i>
+          <span><strong>Estado civil:</strong> {{usuario.estado_civil}}</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-location-dot text-purple-600 dark:text-purple-400 w-5"></i>
+          <span><strong>Endereço:</strong> Rua Exemplo, 123, Osasco - SP</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-phone text-yellow-600 dark:text-yellow-400 w-5"></i>
+          <span><strong>Telefone:</strong> (11) 99999-9999</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fa-brands fa-whatsapp text-green-500 dark:text-green-400 w-5"></i>
+          <span><strong>WhatsApp:</strong> (11) 99999-9999</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-envelope text-pink-600 dark:text-pink-400 w-5"></i>
+          <span><strong>Email:</strong> {{usuario.email}}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resumo -->
+    <section class="mb-8">
+      <h2
+        class="inline-block bg-blue-600 dark:bg-blue-400 text-white dark:text-gray-900 px-4 py-1 rounded-md mb-3 text-xl font-semibold"
+      >
+        Resumo Profissional
+      </h2>
+      <p>
+        {{usuario.sobre_min}}
+      </p>
+    </section>
+
+    <!-- Experiência Profissional -->
+    <section class="mb-8">
+      <h2
+        class="inline-block bg-blue-600 dark:bg-blue-400 text-white dark:text-gray-900 px-4 py-1 rounded-md mb-3 text-xl font-semibold"
+      >
+        Experiência Profissional
+      </h2>
+      <div class="space-y-4">
+        <div>
+          <h3 class="font-semibold text-lg">Desenvolvedor Backend - Empresa XYZ</h3>
+          <span class="text-sm text-gray-600 dark:text-gray-400"
+            >Jan 2023 – Presente</span
+          >
+          <ul class="list-disc list-inside mt-1 text-gray-700 dark:text-gray-300">
+            <li>Desenvolvimento de APIs RESTful com Python (Flask e FastAPI).</li>
+            <li>Manutenção e melhoria de sistemas legados em PHP.</li>
+            <li>Automatização de processos e integração com serviços externos.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg">
+            Estagiário em Desenvolvimento - Empresa ABC
+          </h3>
+          <span class="text-sm text-gray-600 dark:text-gray-400"
+            >Jul 2021 – Dez 2022</span
+          >
+          <ul class="list-disc list-inside mt-1 text-gray-700 dark:text-gray-300">
+            <li>Criação de páginas web utilizando HTML, CSS e JavaScript.</li>
+            <li>Auxílio na implementação de funcionalidades backend.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formação Acadêmica -->
+    <section class="mb-8">
+      <h2
+        class="inline-block bg-blue-600 dark:bg-blue-400 text-white dark:text-gray-900 px-4 py-1 rounded-md mb-3 text-xl font-semibold"
+      >
+        Formação Acadêmica
+      </h2>
+      <div>
+        <h3 class="font-semibold text-lg">Bacharel em Ciência da Computação</h3>
+        <span class="text-sm text-gray-600 dark:text-gray-400"
+          >Universidade XYZ - 2018 a 2022</span
+        >
+      </div>
+    </section>
+
+    <!-- Habilidades Técnicas -->
+    <section class="mb-8">
+      <h2
+        class="inline-block bg-blue-600 dark:bg-blue-400 text-white dark:text-gray-900 px-4 py-1 rounded-md mb-3 text-xl font-semibold"
+      >
+        Habilidades Técnicas
+      </h2>
+
+      <!-- Linguagens -->
+      <div class="mb-4">
+        <h3 class="font-semibold mb-2">Linguagens</h3>
+        <ul class="flex flex-wrap gap-3">
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            Python
+          </li>
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            PHP
+          </li>
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            JavaScript
+          </li>
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            HTML
+          </li>
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            CSS
+          </li>
+        </ul>
+      </div>
+
+      <!-- Frameworks -->
+      <div class="mb-4">
+        <h3 class="font-semibold mb-2">Frameworks e Bibliotecas</h3>
+        <ul class="flex flex-wrap gap-3">
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            Flask
+          </li>
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            FastAPI
+          </li>
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            React
+          </li>
+        </ul>
+      </div>
+
+      <!-- Banco de Dados -->
+      <div class="mb-4">
+        <h3 class="font-semibold mb-2">Banco de Dados</h3>
+        <ul class="flex flex-wrap gap-3">
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            MySQL
+          </li>
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            PostgreSQL
+          </li>
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            SQLite
+          </li>
+        </ul>
+      </div>
+
+      <!-- Ferramentas -->
+      <div>
+        <h3 class="font-semibold mb-2">Ferramentas</h3>
+        <ul class="flex flex-wrap gap-3">
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            Git/GitHub
+          </li>
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            Docker
+          </li>
+          <li
+            class="bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            VS Code
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Cursos -->
+    <section class="mb-8">
+      <h2
+        class="inline-block bg-blue-600 dark:bg-blue-400 text-white dark:text-gray-900 px-4 py-1 rounded-md mb-3 text-xl font-semibold"
+      >
+        Cursos
+      </h2>
+      <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+        <li>Curso Completo de Python - Plataforma XYZ (2024)</li>
+        <li>Desenvolvimento Web com PHP e MySQL - ABC Treinamentos (2023)</li>
+        <li>JavaScript Avançado - Escola de Tecnologia (2022)</li>
+      </ul>
+    </section>
+
+    <!-- Informações Adicionais / Idiomas -->
+    <section>
+      <h2
+        class="inline-block bg-blue-600 dark:bg-blue-400 text-white dark:text-gray-900 px-4 py-1 rounded-md mb-3 text-xl font-semibold"
+      >
+        Informações Adicionais / Idiomas
+      </h2>
+      <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+        <li>Português (Nativo)</li>
+        <li>Inglês (Intermediário)</li>
+        <li>Disponibilidade para viagens</li>
+        <li>Carteira de habilitação categoria B</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

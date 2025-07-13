@@ -47,3 +47,9 @@ def sair():
     logout_user()
     flash('usuario deslogado com sucesso')
     return redirect(url_for('login'))
+
+@app.route('/ver_curriculo')
+@login_required
+def ver_curriculo():
+    usuario = Curriculo.query.filter_by(usuario_id=current_user.id).first()
+    return render_template('curriculo.html', usuario=usuario)
