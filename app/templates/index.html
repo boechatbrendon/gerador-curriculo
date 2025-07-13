@@ -5,152 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" ></script>
 </head>
 <body>
+    {% for field, errors in form.errors.items() %}
+      {% for error in errors %}
+        <p class="text-red-600">{{ field }} - {{ error }}</p>
+      {% endfor %}
+    {% endfor %}
     <h1>Ola Gerador de curriculos</h1>
-    <div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-md rounded" x-data="{ modal: null }">
-      <h1 class="text-2xl font-bold mb-6">Gerador de Currículo</h1>
+<div class="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
+  <div class="text-2xl py-4 px-6 bg-gray-900 text-white text-center font-bold uppercase">
+    Dados Pessoais
+  </div>
+  <form class="py-4 px-6" method="POST">
+    {{ form.csrf_token }}
 
-      <form method="POST">
-        {{ form.csrf_token }}
-
-        <!-- Dados Pessoais -->
-        <div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-          {{ form.nome.label() }} {{ form.nome(class="border px-3 py-2 rounded w-full") }}
-          {{ form.data_nascimento.label() }} {{ form.data_nascimento(class="border px-3 py-2 rounded w-full") }}
-          {{ form.sexo.label() }} {{ form.sexo(class="border px-3 py-2 rounded w-full") }}
-          {{ form.estado_civil.label() }} {{ form.estado_civil(class="border px-3 py-2 rounded w-full") }}
-          {{ form.email.label() }} {{ form.email(class="border px-3 py-2 rounded w-full") }}
-          {{ form.telefone.label() }} {{ form.telefone(class="border px-3 py-2 rounded w-full") }}
-          {{ form.whatsapp.label() }} {{ form.whatsapp(class="border px-3 py-2 rounded w-full") }}
-          {{ form.cargo.label() }} {{ form.cargo(class="border px-3 py-2 rounded w-full") }}
-          <div class="md:col-span-2">
-            {{ form.sobre_min.label() }}
-            {{ form.sobre_min(class="border w-full px-3 py-2 rounded", rows="4") }}
-          </div>
-        </div>
-
-
-        <!-- Botoes para abrir modais -->
-        <div class="mb-6 space-y-4">
-          <button type="button" class="bg-blue-600 text-white px-4 py-2 rounded" @click="modal = 'experiencia'">+ Adicionar Experiência Profissional</button>
-          <button type="button" class="bg-green-600 text-white px-4 py-2 rounded" @click="modal = 'formacao'">+ Adicionar Formação Acadêmica</button>
-          <button type="button" class="bg-yellow-500 text-white px-4 py-2 rounded" @click="modal = 'curso'">+ Adicionar Curso</button>
-          <button type="button" class="bg-purple-600 text-white px-4 py-2 rounded" @click="modal = 'habilidade'">+ Adicionar Habilidade</button>
-          <button type="button" class="bg-gray-700 text-white px-4 py-2 rounded w-full sm:w-auto" @click="modal = 'endereco'">+ Editar Endereço</button>
-        </div>
-
-        <!-- Informacoes Adicionais -->
-        <div class="mb-6">
-          {{ form.informacoes_adicionais.label() }}
-          {{ form.informacoes_adicionais(class="w-full border px-3 py-2 rounded", rows="4") }}
-        </div>
-
-        <!-- Botao Enviar -->
-        <div class="text-center">
-          {{ form.btn_GerarCurriculo(class="bg-black text-white px-6 py-3 rounded text-lg") }}
-        </div>
-      </form>
-
-      <!-- Modal Experiencia -->
-      <template x-if="modal === 'experiencia'">
-        <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div class="bg-white p-6 rounded w-full max-w-2xl">
-            <h2 class="text-xl font-bold mb-4">Adicionar Experiência Profissional</h2>
-            {% for exp in form.experiencia_proficional %}
-              {{ exp.cargo.label() }} {{ exp.cargo(class="w-full border px-3 py-2 rounded") }}
-              {{ exp.empresa.label() }} {{ exp.empresa(class="w-full border px-3 py-2 rounded") }}
-              {{ exp.descricao.label() }} {{ exp.descricao(class="w-full border px-3 py-2 rounded") }}
-              {{ exp.data_inicio.label() }} {{ exp.data_inicio(class="w-full border px-3 py-2 rounded") }}
-              {{ exp.data_fim.label() }} {{ exp.data_fim(class="w-full border px-3 py-2 rounded") }}
-            {% endfor %}
-            <div class="mt-6 text-right">
-              <button class="px-4 py-2 bg-gray-300 rounded mr-2" @click="modal = null">Cancelar</button>
-              <button class="px-4 py-2 bg-blue-600 text-white rounded">Salvar</button>
-            </div>
-          </div>
-        </div>
-      </template>
-
-      <!-- Modal Formacao -->
-      <template x-if="modal === 'formacao'">
-        <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div class="bg-white p-6 rounded w-full max-w-2xl">
-            <h2 class="text-xl font-bold mb-4">Adicionar Formação Acadêmica</h2>
-            {% for f in form.formacoes %}
-              {{ f.nome_formacao.label() }} {{ f.nome_formacao(class="w-full border px-3 py-2 rounded") }}
-              {{ f.instituicao.label() }} {{ f.instituicao(class="w-full border px-3 py-2 rounded") }}
-              {{ f.nivel.label() }} {{ f.nivel(class="w-full border px-3 py-2 rounded") }}
-              {{ f.situacao.label() }} {{ f.situacao(class="w-full border px-3 py-2 rounded") }}
-              {{ f.data_inicio.label() }} {{ f.data_inicio(class="w-full border px-3 py-2 rounded") }}
-              {{ f.data_conclusao.label() }} {{ f.data_conclusao(class="w-full border px-3 py-2 rounded") }}
-              {{ f.carga_horaria.label() }} {{ f.carga_horaria(class="w-full border px-3 py-2 rounded") }}
-            {% endfor %}
-            <div class="mt-6 text-right">
-              <button class="px-4 py-2 bg-gray-300 rounded mr-2" @click="modal = null">Cancelar</button>
-              <button class="px-4 py-2 bg-green-600 text-white rounded">Salvar</button>
-            </div>
-          </div>
-        </div>
-      </template>
-
-      <!-- Modal Curso -->
-      <template x-if="modal === 'curso'">
-        <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div class="bg-white p-6 rounded w-full max-w-2xl">
-            <h2 class="text-xl font-bold mb-4">Adicionar Curso</h2>
-            {% for c in form.cursos %}
-              {{ c.nome_curso.label() }} {{ c.nome_curso(class="w-full border px-3 py-2 rounded") }}
-              {{ c.instituicao.label() }} {{ c.instituicao(class="w-full border px-3 py-2 rounded") }}
-              {{ c.situacao.label() }} {{ c.situacao(class="w-full border px-3 py-2 rounded") }}
-              {{ c.carga_horaria.label() }} {{ c.carga_horaria(class="w-full border px-3 py-2 rounded") }}
-            {% endfor %}
-            <div class="mt-6 text-right">
-              <button class="px-4 py-2 bg-gray-300 rounded mr-2" @click="modal = null">Cancelar</button>
-              <button class="px-4 py-2 bg-yellow-500 text-white rounded">Salvar</button>
-            </div>
-          </div>
-        </div>
-      </template>
-
-      <!-- Modal Habilidade -->
-      <template x-if="modal === 'habilidade'">
-        <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div class="bg-white p-6 rounded w-full max-w-2xl">
-            <h2 class="text-xl font-bold mb-4">Adicionar Habilidade</h2>
-            {% for hab in form.habilidades %}
-              <div class="mb-2 grid grid-cols-2 gap-4 items-center">
-                {{ hab.habilidade.label() }} {{ hab.habilidade(class="border px-3 py-2 rounded") }}
-                {{ hab.nivel_conhecimento.label() }} {{ hab.nivel_conhecimento(class="border px-3 py-2 rounded") }}
-              </div>
-            {% endfor %}
-            <div class="mt-6 text-right">
-              <button class="px-4 py-2 bg-gray-300 rounded mr-2" @click="modal = null">Cancelar</button>
-              <button class="px-4 py-2 bg-purple-600 text-white rounded">Salvar</button>
-            </div>
-          </div>
-        </div>
-      </template>
-      <!-- Modal Endereco -->
-      <template x-if="modal === 'endereco'">
-        <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div class="bg-white p-6 rounded w-full max-w-2xl">
-            <h2 class="text-xl font-bold mb-4">Editar Endereço</h2>
-            {{ form.endereco.cep.label() }} {{ form.endereco.cep(class="border w-full px-3 py-2 rounded") }}
-            {{ form.endereco.logradouro.label() }} {{ form.endereco.logradouro(class="border w-full px-3 py-2 rounded") }}
-            {{ form.endereco.numero.label() }} {{ form.endereco.numero(class="border w-full px-3 py-2 rounded") }}
-            {{ form.endereco.complemento.label() }} {{ form.endereco.complemento(class="border w-full px-3 py-2 rounded") }}
-            {{ form.endereco.bairro.label() }} {{ form.endereco.bairro(class="border w-full px-3 py-2 rounded") }}
-            {{ form.endereco.municipio.label() }} {{ form.endereco.municipio(class="border w-full px-3 py-2 rounded") }}
-            {{ form.endereco.uf.label() }} {{ form.endereco.uf(class="border w-full px-3 py-2 rounded") }}
-            <div class="mt-6 text-right">
-              <button class="px-4 py-2 bg-gray-300 rounded mr-2" @click="modal = null">Cancelar</button>
-              <button class="px-4 py-2 bg-gray-700 text-white rounded">Salvar</button>
-            </div>
-          </div>
-        </div>
-      </template>
+    <div class="mb-4">
+      {{ form.nome.label(class="block text-gray-700 font-bold mb-2") }}
+      {{ form.nome(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
     </div>
+
+    <div class="mb-4">
+      {{ form.data_nascimento.label(class="block text-gray-700 font-bold mb-2") }}
+      {{ form.data_nascimento(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+    </div>
+
+    <div class="mb-4">
+      {{ form.sexo.label(class="block text-gray-700 font-bold mb-2") }}
+      {{ form.sexo(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+    </div>
+
+    <div class="mb-4">
+      {{ form.estado_civil.label(class="block text-gray-700 font-bold mb-2") }}
+      {{ form.estado_civil(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+    </div>
+
+    <div class="mb-4">
+      {{ form.email.label(class="block text-gray-700 font-bold mb-2") }}
+      {{ form.email(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+    </div>
+
+    <div class="mb-4">
+      {{ form.telefone.label(class="block text-gray-700 font-bold mb-2") }}
+      {{ form.telefone(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+    </div>
+
+    <div class="mb-4">
+      {{ form.whatsapp.label(class="block text-gray-700 font-bold mb-2") }}
+      {{ form.whatsapp(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+    </div>
+
+    <div class="mb-4">
+      {{ form.cargo.label(class="block text-gray-700 font-bold mb-2") }}
+      {{ form.cargo(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+    </div>
+
+    <div class="mb-4">
+      {{ form.sobre_min.label(class="block text-gray-700 font-bold mb-2") }}
+      {{ form.sobre_min(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", rows="4") }}
+    </div>
+
+    <div class="flex items-center justify-center mb-4">
+      <button type="submit"
+        class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline">
+        Salvar Dados Pessoais
+      </button>
+    </div>
+  </form>
+</div>
+
 </body>
 </html>

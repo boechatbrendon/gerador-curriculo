@@ -93,21 +93,5 @@ class FormDado(FlaskForm):
     cargo = StringField('Cargo desejado', validators=[DataRequired()])
     sobre_min = TextAreaField('Sobre mim', validators=[DataRequired()])
 
-    # Endereco
-    endereco = FormField(EnderecoForm)
-
-    # Experiencias
-    experiencia_proficional = FieldList(FormField(ExperienciaProfissionalForm), min_entries=1, max_entries=5)
-
-    # Formacao Academica
-    formacoes = FieldList(FormField(FormacaoAcademicaForm), min_entries=1, max_entries=5)
-
-    # Habilidades
-    habilidades = FieldList(FormField(HabilidadeForm), min_entries=1, max_entries=10)
-
-    # Cursos e informacoes adicionais
-    cursos = FieldList(FormField(CursoForm), min_entries=1, max_entries=10)
-    informacoes_adicionais = TextAreaField('Informações Adicionais (opcional)')
-
     # Botao
     btn_GerarCurriculo = SubmitField('Gerar Currículo')
